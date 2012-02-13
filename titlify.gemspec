@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Josh Hepworth"]
   s.email       = ["josh@friendsoftheweb.com"]
-  s.homepage    = "http://github.com/joshhepworth/titlify"
+  s.homepage    = "http://github.com/fotw/titlify"
   s.summary     = %q{Gonna be the best damn titlecasing function around.}
   s.description = s.summary
 

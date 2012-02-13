@@ -1,0 +1,8 @@
+*.gem
+
+# Yard
+doc/*
+.yardoc
+
+# OS X Crap
+.DS_Store

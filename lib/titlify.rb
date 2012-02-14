@@ -22,11 +22,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-require "titlify/transliterate"
-require "titlify/smart_format"
 require "titlify/titlecase"
-require "titlify/utilities"
-require "titlify/entities"
-require "titlify/tags"
 
 require "titlify/string_extensions"

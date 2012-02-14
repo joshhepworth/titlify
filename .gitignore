@@ -6,3 +6,6 @@ doc/*
 
 # OS X Crap
 .DS_Store
+
+# Build Gems
+pkg/*

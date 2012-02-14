@@ -27,6 +27,20 @@ module Titlify
           \b
           ([_\*]*)
           (?:
+            ([A-Z][\.]) # Acronyms with periods in them
+          ){2,100}
+          ([_\*]*)
+          \b?
+        /xi
+      ) do |m|
+        m.gsub(/\./, "").upcase
+      end
+
+      string.gsub!(
+        /
+          \b
+          ([_\*]*)
+          (?:
             ( [-\+\w]+ [@.\:\/] [-\w@.\:\/]+ #{apos} )      # URL, domain, or email
             |
             ( (?i: #{small_words} ) #{apos} )               # or small word, case-insensitive

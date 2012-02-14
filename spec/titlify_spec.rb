@@ -20,8 +20,8 @@ describe Titlify do
   it "properly titlecases a word with abbreviations with and without periods" do
     title = "there's a big AT&T monster in DOD for the DOJ".titlify
     title.should eq("There's a Big AT&T Monster in DOD for the DOJ")
-    title = "there's a big AT&T monster in D.O.D. for the D.O.J.".titlify
-    title.should eq("There's a Big AT&T Monster in D.O.D. for the D.O.J.")
+    title = "there's a big AT&T monster in d.o.d. for the n.a.s.a.".titlify
+    title.should eq("There's a Big AT&T Monster in DOD for the NASA")
   end
 
   it "capitalizes the first letter after a hyphen" do

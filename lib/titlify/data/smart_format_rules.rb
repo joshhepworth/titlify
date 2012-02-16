@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 module Titlify
-  # @private
   class Data
     def self.smart_format_rules
       [

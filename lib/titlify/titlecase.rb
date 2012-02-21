@@ -19,7 +19,7 @@ module Titlify
       string.gsub!(/\s+/, " ")
       string.downcase! unless string =~ /[[:lower:]]/
 
-      small_words = %w{ a an and as at(?!&t) but by en for if in nor of on or the to v[.]? via vs[.]? }.join("|")
+      small_words = word_list.join("|")
       apos = / (?: ['#{rsquo}] [[:lower:]]* )? /xu
 
       string.gsub!(
@@ -39,23 +39,52 @@ module Titlify
       string.gsub!(
         /
           \b
-          ([_\*]*)
+          ([_\*]*)                                          # [1]
           (?:
-            ( [-\+\w]+ [@.\:\/] [-\w@.\:\/]+ #{apos} )      # URL, domain, or email
+            (                                               # [2] entire matched URL
+              (?:[A-Za-z0-9]+[\.]{1})+(?:ac|ad|ae|aero|af|ag|ai|al|am|an|ao|aq|ar|arpa|as|asia|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|biz|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cat|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|com|coop|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|edu|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gov|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|info|int|io|iq|ir|is|it|je|jm|jo|jobs|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mil|mk|ml|mm|mn|mo|mobi|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|name|nc|ne|net|nf|ng|ni|nl|no|np|nr|nu|nz|om|org|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pro|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sx|sy|sz|tc|td|tel|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|travel|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|xn|xxx|ye|yt|za|zm|zw)
+              |
+              (?:
+                (?:
+                  [a-z][\w-]+:
+                  (?:
+                    \/{1,3}
+                    |
+                    [a-z0-9%]
+                  )
+                  |
+                  www\d{0,3}[.]
+                  |
+                  [a-z0-9.\-]+[.][a-z]{2,4}\/
+                )
+                (?:
+                  [^\s()<>]+
+                  |
+                  \([^\s()<>]+|\([^\s()<>]+\)*\)
+                )+
+                (?:
+                  \([^\s()<>]+|\([^\s()<>]+\)*\)
+                  |
+                  [^\s`!()\[\]{};:'".,<>?«»“”‘’]
+                )
+              )
+            )
             |
-            ( (?i: #{small_words} ) #{apos} )               # or small word, case-insensitive
+            ((?:[\w-\.]+)@(?:[\w]+\.)+(?:[a-zA-Z]){2,4})        # [3] email
             |
-            ( [[:alpha:]] [[:lower:]'#{rsquo}()\[\]{}]* #{apos} )  # or word without internal caps
+            ( (?i: #{small_words} ) #{apos} )               # [4] or small word, case-insensitive
             |
-            ( [[:alpha:]] [[:alpha:]'#{rsquo}()\[\]{}]* #{apos} )  # or some other word
+            ( [[:alpha:]] [[:lower:]'#{rsquo}()\[\]{}]* #{apos} )  # [5] or word without internal caps
+            |
+            ( [[:alpha:]] [[:alpha:]'#{rsquo}()\[\]{}]* #{apos} )  # [6] or some other word
           )
-          ([_\*]*)
+          ([_\*]*)                                                 # [7]
           \b
         /xu
       ) do
         ($1 ? $1 : "") +
-        ($2 ? $2 : ($3 ? $3.downcase : ($4 ? $4.downcase.capitalize : $5))) +
-        ($6 ? $6 : "")
+        ($2 ? $2 : ($3 ? $3.downcase : ($4 ? $4.downcase : ($5 ? $5.downcase.capitalize : $6)))) +
+        ($7 ? $7 : "")
       end
 
       if RUBY_VERSION < "1.9.0"
@@ -125,9 +154,16 @@ module Titlify
     # Lazy load smart formatting rules
     def smart_format_rules
       @smart_format_rules ||= begin
-        require "titlify/data/smart_format_rules"
-        Data.smart_format_rules
-      end
+                                require "titlify/data/smart_format_rules"
+                                Data.smart_format_rules
+                              end
+    end
+
+    def word_list
+      @word_list ||= begin
+                       require "titlify/data/word_lists"
+                       Data.word_list
+                     end
     end
 
   end

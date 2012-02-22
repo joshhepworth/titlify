@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Josh Hepworth"]
   s.email       = ["josh@friendsoftheweb.com"]
-  s.homepage    = "http://github.com/fotw/titlify"
-  s.summary     = %q{Gonna be the best damn titlecasing function around.}
+  s.homepage    = "http://github.com/joshhepworth/titlify"
+  s.summary     = %q{Gonna be the best damn titlecasing gem around, with rules based on AP Stylebook and Chicago Manual of Style.}
   s.description = s.summary
 
   s.rubyforge_project = "titlify"

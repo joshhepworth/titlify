@@ -20,6 +20,14 @@ module Titlify
       # at
     end
 
+    def self.copulae
+      %w(be am is are being was were been to\ be will\ be has\ been have\ been is\ being are\ being)
+    end
+
+    def self.prefixes
+      %w(a anti arch be co counter de dis en em ex fore in il im ir inter mal mid mini mis out over post pre pro re self step trans twi un under up with)
+    end
+
     def self.special_cases
       # I bet this is going to get out of control...
       %w(at(?!&t) v[.]? vs[.]?)

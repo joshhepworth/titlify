@@ -70,7 +70,7 @@ module Titlify
               )
             )
             |
-            ((?:[\w-\.]+)@(?:[\w]+\.)+(?:[a-zA-Z]){2,4})        # [3] email
+            ((?:[\w\.\-]+)@(?:[\w]+\.)+(?:[a-zA-Z]){2,4})        # [3] email
             |
             ( (?i: #{small_words} ) #{apos} )               # [4] or small word, case-insensitive
             |

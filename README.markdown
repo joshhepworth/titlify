@@ -39,6 +39,11 @@ Installation
 Install with RubyGems:
 
     gem install titlify
+    
+Status
+------
+
+[![Code Climate](https://codeclimate.com/github/joshhepworth/titlify.png)](https://codeclimate.com/github/joshhepworth/titlify)
 
 License
 -------

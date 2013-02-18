@@ -43,7 +43,7 @@ Install with RubyGems:
 Status
 ------
 
-[![Code Climate](https://codeclimate.com/github/joshhepworth/titlify.png)](https://codeclimate.com/github/joshhepworth/titlify)
+[![Code Climate](https://codeclimate.com/github/joshhepworth/titlify.png)](https://codeclimate.com/github/joshhepworth/titlify) [![Build Status](https://travis-ci.org/joshhepworth/titlify.png?branch=master)](https://travis-ci.org/joshhepworth/titlify)
 
 License
 -------

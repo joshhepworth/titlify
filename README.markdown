@@ -1,6 +1,8 @@
 Titlify
 =======
 
+![Codeship Status](https://www.codeship.io/projects/cdf48890-1fa5-0131-140d-76d2c47f2c63/status)
+
 The best damn titlecase function. (Or at least on its way.) Titlify will be moving closer to adhere to the [AP Stylebook](http://www.apstylebook.com/). It is the most commonly used style guide in the United States in journalism. Because I expect this gem will be used in situations more similar to journalism, I think the AP Stylebook makes sense. However, if there's enough support for Chicago Manual of Style and Elements of Typographic Style, I'll reconsider. It's still early on.
 
 Credits

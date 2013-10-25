@@ -14,6 +14,10 @@ Usage
 
 Titlify provides functionality both as class methods on the Titlify module and as extensions to the String class. 
 
+    Titlify.config do |c|
+      c.stylebook = :apa
+    end
+
     Titlify.titlify("make title") # => "Make Title"
 
     "make title".titlify # => "Make Title"

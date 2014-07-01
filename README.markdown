@@ -12,27 +12,35 @@ The most thorough titlecasing function I found was Patrick Hogan's in his [steri
 Usage
 -----
 
-Titlify provides functionality both as class methods on the Titlify module and as extensions to the String class. 
+Titlify provides functionality both as class methods on the Titlify module and as extensions to the String class.
 
-    Titlify.titlify("make title") # => "Make Title"
+  ```ruby
+  Titlify.titlify("make title") # => "Make Title"
 
-    "make title".titlify # => "Make Title"
+  "make title".titlify # => "Make Title"
 
-    title = "make title"
-    title.titlify!
-    title # => "Make Title"
+  title = "make title"
+  title.titlify!
+  title # => "Make Title"
+  ```
 
 
 Titlecase
 ---------
 
-Format text appropriately for titles. This method is much smarter than ActiveSupport's titlecase. The algorithm is based on work done by John Gruber et al (http://daringfireball.net/2008/08/title_case_update). It gets closer to the AP standard for title capitalization, including proper support for small words and handles a variety of edge cases.
+Format text appropriately for titles. This method is much smarter than ActiveSupport's `titlecase`, which effectively calls `String#capitalize` on the first character of each word in a string without regard for style. The algorithm is based on work done by John Gruber et al (http://daringfireball.net/2008/08/title_case_update). It gets closer to the AP standard for title capitalization, including proper support for small words and handles a variety of edge cases.
 
+  ```ruby
 	"Q&A with Steve Jobs: 'That's what happens in technology'".titlify
 	# => "Q&A With Steve Jobs: 'That's What Happens in Technology'"
-	
+
 	"Small word at end is nothing to be afraid of".titlify
 	# => "Small Word at End Is Nothing to Be Afraid Of"
+
+	# Compare with ActiveSupport::Inflector.titlecase
+	"Small word at end is nothing to be afraid of".titlecase
+	# => "Small Word At End Is Nothing To Be Afraid Of"
+  ```
 
 
 Installation
@@ -41,7 +49,7 @@ Installation
 Install with RubyGems:
 
     gem install titlify
-    
+
 Status
 ------
 

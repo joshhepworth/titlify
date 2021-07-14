@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe Titlify do
-  it "titlecases a string object" do
-    title = "this is the title of the post".titlify
-    title.should eq("This Is the Title of the Post")
+  it "titlecases a string object not in place" do
+    title = "this is the title of the post"
+    new_title = title.titlify
+    title.should eq("this is the title of the post")
+    new_title.should eq("This Is the Title of the Post")
   end
 
   it "titlecases a string object in place" do
